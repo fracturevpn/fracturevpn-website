@@ -25,7 +25,6 @@
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
-    /* Header */
     header {
       padding: 20px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -41,7 +40,6 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
-    /* Hero */
     .hero {
       padding: 100px 0; text-align: center; position: relative;
     }
@@ -62,7 +60,6 @@
     }
     .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(4, 91, 145, 0.4); }
 
-    /* Shards Animation */
     .shards {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
     }
@@ -235,7 +232,7 @@
   <section class="airdrop">
     <div class="container">
       <h2>Stake 0.01 ETH → Get 1,000 $FVPN</h2>
-      <div class="airdrop-counter" id="counter">0 Staked</div>
+      <div class="airdrop-counter" id="stakedCounter">Loading...</div>
       <a href="/airdrop" class="cta">Join Airdrop Now</a>
     </div>
   </section>
@@ -252,6 +249,34 @@
     </div>
   </footer>
 
+  <!-- Ethers.js + Real-Time Counter -->
+  <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js"></script>
+  <script>
+    const AIRDROP_CONTRACT = "0xYourAirdropContract"; // REPLACE WITH YOUR CONTRACT ADDRESS
+    const ABI = [
+      "function totalStaked() view returns (uint256)"
+    ];
+
+    const counter = document.getElementById('stakedCounter');
+
+    async function updateCounter() {
+      try {
+        const provider = new ethers.providers.JsonRpcProvider("https://arb1.arbitrum.io/rpc");
+        const contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
+        const total = await contract.totalStaked();
+        const eth = ethers.utils.formatEther(total);
+        counter.textContent = parseFloat(eth).toFixed(4) + " ETH Staked";
+      } catch (error) {
+        counter.textContent = "Error loading...";
+        console.error(error);
+      }
+    }
+
+    // Update every 10 seconds
+    updateCounter();
+    setInterval(updateCounter, 10000);
+  </script>
+
   <script>
     // Animated Shards
     const shardsContainer = document.getElementById('shards');
@@ -263,13 +288,6 @@
       shard.style.animationDelay = Math.random() * 5 + 's';
       shardsContainer.appendChild(shard);
     }
-
-    // Live Airdrop Counter (mock)
-    let count = 0;
-    setInterval(() => {
-      count += Math.floor(Math.random() * 50);
-      document.getElementById('counter').textContent = count.toLocaleString() + ' ETH Staked';
-    }, 3000);
   </script>
 </body>
 </html>
