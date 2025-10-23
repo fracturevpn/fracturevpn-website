@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="FractureVPN Airdrop — Stake 0.01 ETH, Get 1,000 $FVPN" />
+  <meta name="description" content="FractureVPN Airdrop — Stake 0.01 ETH for 30 days, Get 1,000 $FVPN" />
   <title>FractureVPN Airdrop</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -107,7 +107,7 @@
   <section class="hero">
     <div class="container">
       <h1>Airdrop Live</h1>
-      <p>Stake 0.01 ETH → Get 1,000 $FVPN instantly</p>
+      <p>Stake 0.01 ETH for 30 days → Get 1,000 $FVPN instantly</p>
     </div>
   </section>
 
@@ -146,7 +146,9 @@
     const AIRDROP_CONTRACT = "0xYourAirdropContract"; // REPLACE
     const ABI = [
       "function stakeForAirdrop() payable",
-      "function totalStaked() view returns (uint256)"
+      "function stakedAmount(address) view returns (uint256)",
+      "function totalStaked() view returns (uint256)",
+      "function unlockTime(address) view returns (uint256)"
     ];
 
     const status = document.getElementById('status');
@@ -171,6 +173,7 @@
       btn.textContent = "Stake 0.01 ETH";
       status.textContent = "Connected!";
       updateCounter();
+      checkStakeStatus(address);
     }
 
     // Stake
@@ -181,7 +184,7 @@
         const tx = await contract.stakeForAirdrop({ value: ethers.utils.parseEther("0.01") });
         status.textContent = "Waiting for confirmation...";
         await tx.wait();
-        status.textContent = "Success! 1,000 $FVPN sent!";
+        status.textContent = "Success! 1,000 $FVPN sent! Locked for 30 days.";
         btn.textContent = "Claimed!";
         updateCounter();
       } catch (error) {
@@ -190,7 +193,19 @@
       }
     }
 
-    // Live Counter (Real Data)
+    // Check Stake Status
+    async function checkStakeStatus(address) {
+      const amount = await contract.stakedAmount(address);
+      if (amount > 0) {
+        const unlock = await contract.unlockTime(address);
+        const daysLeft = Math.ceil((unlock - Date.now() / 1000) / 86400);
+        status.textContent = `Staked! Unlock in ${daysLeft} days.`;
+        btn.textContent = "Claimed!";
+        btn.disabled = true;
+      }
+    }
+
+    // Live Counter
     async function updateCounter() {
       try {
         const total = await contract.totalStaked();
