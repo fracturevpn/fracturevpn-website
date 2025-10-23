@@ -84,4 +84,25 @@
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
     }
     .feature-card {
-      background: var(--card); padding: 30px; border-radius: 16px; text-align:
+      background: var(--card); padding: 30px; border-radius: 16px; text-align: center;
+      transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-10px); }
+    .feature-card i {
+      font-size: 48px; color: var(--accent); margin-bottom: 20px;
+    }
+    .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
+
+    /* Pricing */
+    .pricing {
+      padding: 100px 0; text-align: center;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;
+    }
+    .price-card {
+      background: var(--card); padding: 40px; border-radius: 16px; position: relative;
+      transition: transform 0.3s;
+    }
+    .price-card:hover { transform: translateY(-10px); }
+    .
