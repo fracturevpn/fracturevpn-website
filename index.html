@@ -12,8 +12,8 @@
       --bg: #0f172a;
       --card: #1e293b;
       --text: #f3f4f6;
-      --accent: #ef4444;
-      --gray: #6b7280;
+      --accent: #045b91;
+      --gray: #94a3b8;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { 
@@ -43,11 +43,11 @@
 
     /* Hero */
     .hero {
-      padding: 100px 0; text-align: center;
+      padding: 100px 0; text-align: center; position: relative;
     }
     .hero h1 {
       font-size: 56px; font-weight: 900; margin-bottom: 20px;
-      background: linear-gradient(90deg, #ef4444, #f87171);
+      background: linear-gradient(90deg, #045b91, #0ea5e9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -57,17 +57,17 @@
     .cta {
       display: inline-block; background: var(--accent); color: white; padding: 16px 36px;
       border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 18px;
-      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.3);
+      box-shadow: 0 10px 30px rgba(4, 91, 145, 0.3);
       transition: all 0.3s;
     }
-    .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(239, 68, 68, 0.4); }
+    .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(4, 91, 145, 0.4); }
 
     /* Shards Animation */
     .shards {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
     }
     .shard {
-      position: absolute; width: 60px; height: 60px; background: rgba(239, 68, 68, 0.1);
+      position: absolute; width: 60px; height: 60px; background: rgba(4, 91, 145, 0.1);
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       animation: float 6s infinite ease-in-out;
     }
@@ -84,116 +84,4 @@
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
     }
     .feature-card {
-      background: var(--card); padding: 30px; border-radius: 16px; text-align: center;
-      transition: transform  0.3s;
-    }
-    .feature-card:hover { transform: translateY(-10px); }
-    .feature-card i {
-      font-size: 48px; color: var(--accent); margin-bottom: 20px;
-    }
-    .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
-
-    /* Pricing */
-    .pricing {
-      padding: 100px 0; text-align: center;
-    }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;
-    }
-    .price-card {
-      background: var(--card); padding: 40px; border-radius: 16px; position: relative;
-    }
-    .price-card.popular {
-      border: 2px solid var(--accent);
-      transform: scale(1.05);
-    }
-    .price-card h3 { font-size: 28px; margin-bottom: 10px; }
-    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); }
-    .price-card ul { list-style: none; margin: 20px 0; text-align: left; }
-    .price-card ul li { margin: 10px 0; }
-    .price-card ul li i { color: #10b981; margin-right: 10px; }
-
-    /* Airdrop */
-    .airdrop {
-      padding: 100px 0; background: rgba(239, 68, 68, 0.1); text-align: center;
-    }
-    .airdrop h2 { font-size: 42px; margin-bottom: 20px; }
-    .airdrop-counter {
-      font-size: 36px; font-weight: 900; color: var(--accent); margin: 20px 0;
-    }
-
-    /* Footer */
-    footer {
-      padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .social a { color: var(--gray); margin: 0 15px; font-size: 24px; }
-    .social a:hover { color: var(--accent); }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 42px; }
-      .hero p { font-size: 18px; }
-      .pricing-grid { grid-template-columns: 1fr; }
-    }
-  </style>
-</head>
-<body>
-  <!-- Shards Animation -->
-  <div class="shards" id="shards"></div>
-
-  <!-- Header -->
-  <header>
-    <div class="container nav">
-      <div class="logo">FractureVPN</div>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="/airdrop">Airdrop</a>
-        <a href="/download">Download</a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1>Shatter Surveillance</h1>
-      <p>The first sharded, decentralized VPN. Earn $FVPN while staying hidden.</p>
-      <a href="/airdrop" class="cta">Join Airdrop → 1,000 $FVPN Free</a>
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section class="features" id="features">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 50px; font-size: 36px;">Why FractureVPN?</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Unbreakable Privacy</h3>
-          <p>7-shard encryption. No logs. No trust.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-bolt"></i>
-          <h3>WireGuard Speed</h3>
-          <p>4K streaming. 30ms gaming. Zero lag.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-coins"></i>
-          <h3>Earn $FVPN</h3>
-          <p>Run a node → $1,000/month</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing -->
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <h2>Pricing</h2>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Free</h3>
-          <div class="price">$0</div>
-          <ul>
-            <li><i class="fas fa-check"></i> 3 shards</li>
-            <li><i class="fas fa
+      background: var(--card); padding: 30px; border-radius: 16px; text-align:
