@@ -141,7 +141,24 @@
   </footer>
 
   <!-- Ethers.js + Real-Time Counter -->
-  <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js"></script>
+  <!-- Ethers.js with Fallback (Works on ALL browsers) -->
+<script>
+  // Load ethers.js with fallback
+  (function() {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js';
+    script.onload = () => {
+      console.log('ethers.js loaded');
+      window.ethersLoaded = true;
+      initApp(); // Start your app
+    };
+    script.onerror = () => {
+      document.getElementById('status').textContent = "Failed to load blockchain. Try again.";
+      console.error("ethers.js failed to load");
+    };
+    document.head.appendChild(script);
+  })();
+</script>
   <script>
     // REPLACE WITH YOUR REAL ADDRESS AND ABI
     const AIRDROP_CONTRACT = "0xf6B07a4649D78f2F52E35dFBDA6eFBb7093E93Fa"; // YOUR AirdropStaking ADDRESS
