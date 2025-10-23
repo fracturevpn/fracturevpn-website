@@ -145,7 +145,7 @@
   <script>
     // REPLACE WITH YOUR REAL ADDRESS AND ABI
     const AIRDROP_CONTRACT = "0xf6B07a4649D78f2F52E35dFBDA6eFBb7093E93Fa"; // YOUR AirdropStaking ADDRESS
-    const ABI = [
+    const ABI = [ [
 	{
 		"inputs": [
 			{
@@ -388,7 +388,7 @@
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-];
+] ]; // FULL ABI FROM STEP 2
 
     const status = document.getElementById('status');
     const btn = document.getElementById('stakeBtn');
@@ -397,26 +397,64 @@
 
     let provider, signer, contract;
 
+    // Initialize Contract
+    async function initContract() {
+      if (!window.ethereum) {
+        status.textContent = "MetaMask not detected! Please install.";
+        return false;
+      }
+      try {
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        const network = await provider.getNetwork();
+        if (network.chainId !== 42161) {
+          status.textContent = "Please switch to Arbitrum One!";
+          try {
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0xa4b1' }], // Arbitrum One = 42161 (0xa4b1)
+            });
+          } catch (error) {
+            status.textContent = "Failed to switch to Arbitrum One. Please do it manually.";
+            console.error(error);
+            return false;
+          }
+        }
+        contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
+        status.textContent = "Contract initialized. Connect wallet to proceed.";
+        return true;
+      } catch (error) {
+        status.textContent = `Contract init failed: ${error.message}`;
+        console.error(error);
+        return false;
+      }
+    }
+
     // Connect Wallet
     async function connectWallet() {
-      if (!window.ethereum) {
-        alert("MetaMask not detected! Install it.");
-        return;
+      const initialized = await initContract();
+      if (!initialized) return;
+      try {
+        await provider.send("eth_requestAccounts", []);
+        signer = provider.getSigner();
+        const address = await signer.getAddress();
+        walletInput.value = address;
+        contract = contract.connect(signer);
+        btn.textContent = "Stake 0.01 ETH";
+        status.textContent = "Connected!";
+        await checkStakeStatus(address);
+        await updateCounter();
+      } catch (error) {
+        status.textContent = `Connection failed: ${error.message}`;
+        console.error(error);
       }
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      signer = provider.getSigner();
-      const address = await signer.getAddress();
-      walletInput.value = address;
-      contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, signer);
-      btn.textContent = "Stake 0.01 ETH";
-      status.textContent = "Connected!";
-      checkStakeStatus(address);
-      updateCounter();
     }
 
     // Stake
     async function stake() {
+      if (!contract) {
+        status.textContent = "Contract not initialized. Please reconnect.";
+        return;
+      }
       try {
         btn.disabled = true;
         status.textContent = "Sending 0.01 ETH...";
@@ -425,50 +463,4 @@
         await tx.wait();
         status.textContent = "Success! 1,000 $FVPN sent! Locked for 30 days.";
         btn.textContent = "Claimed!";
-        updateCounter();
-      } catch (error) {
-        status.textContent = `Error: ${error.message}`;
-        btn.disabled = false;
-      }
-    }
-
-    // Check Stake Status
-    async function checkStakeStatus(address) {
-      try {
-        const amount = await contract.stakedAmount(address);
-        if (amount > 0) {
-          const unlock = await contract.unlockTime(address);
-          const daysLeft = Math.ceil((unlock - Date.now() / 1000) / 86400);
-          status.textContent = `Staked! Unlock in ${daysLeft} days.`;
-          btn.textContent = "Claimed!";
-          btn.disabled = true;
-        }
-      } catch (error) {
-        status.textContent = `Status check failed: ${error.message}`;
-      }
-    }
-
-    // Live Counter
-    async function updateCounter() {
-      try {
-        const total = await contract.totalStaked();
-        const eth = ethers.utils.formatEther(total);
-        counter.textContent = parseFloat(eth).toFixed(4);
-      } catch (error) {
-        counter.textContent = "Failed to load counter";
-        console.error(error);
-      }
-    }
-
-    // Button Logic
-    btn.onclick = () => {
-      if (btn.textContent.includes("Connect")) connectWallet();
-      else stake();
-    };
-
-    // Auto-update every 10s
-    setInterval(updateCounter, 10000);
-    updateCounter();
-  </script>
-</body>
-</html>
+        btn
