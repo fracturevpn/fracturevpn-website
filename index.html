@@ -25,7 +25,6 @@
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
-    /* Header */
     header {
       padding: 20px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -41,7 +40,6 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
-    /* Hero */
     .hero {
       padding: 100px 0; text-align: center; position: relative;
     }
@@ -55,4 +53,220 @@
       font-size: 20px; color: var(--gray); max-width: 700px; margin: 0 auto 40px;
     }
     .cta {
-      display: inline-block;
+      display: inline-block; background: var(--accent); color: white; padding: 16px 36px;
+      border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 18px;
+      box-shadow: 0 10px 30px rgba(4, 91, 145, 0.3);
+      transition: all 0.3s;
+    }
+    .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(4, 91, 145, 0.4); }
+
+    .shards {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
+    }
+    .shard {
+      position: absolute; width: 60px; height: 60px; background: rgba(4, 91, 145, 0.1);
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      animation: float 6s infinite ease-in-out;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    .features {
+      padding: 100px 0; background: rgba(30, 41, 59, 0.5);
+    }
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
+    }
+    .feature-card {
+      background: var(--card); padding: 30px; border-radius: 16px; text-align: center;
+      transition: transform 0.3s;
+    }
+    .feature-card:hover { transform: translateY(-10px); }
+    .feature-card i {
+      font-size: 48px; color: var(--accent); margin-bottom: 20px;
+    }
+    .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
+
+    .pricing {
+      padding: 100px 0; text-align: center;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;
+    }
+    .price-card {
+      background: var(--card); padding: 40px; border-radius: 16px; position: relative;
+      transition: transform 0.3s;
+    }
+    .price-card:hover { transform: translateY(-10px); }
+    .price-card.popular {
+      border: 2px solid var(--accent);
+      transform: scale(1.05);
+    }
+    .price-card.popular:hover { transform: scale(1.05) translateY(-10px); }
+    .price-card h3 { font-size: 28px; margin-bottom: 10px; }
+    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); }
+    .price-card ul { list-style: none; margin: 20px 0; text-align: left; }
+    .price-card ul li { margin: 10px 0; }
+    .price-card ul li i { color: #10b981; margin-right: 10px; }
+    .price-card .cta {
+      background: var(--accent); margin-top: 20px;
+    }
+
+    .airdrop {
+      padding: 100px 0; background: rgba(4, 91, 145, 0.1); text-align: center;
+    }
+    .airdrop h2 { font-size: 42px; margin-bottom: 20px; }
+    .airdrop-counter {
+      font-size: 36px; font-weight: 900; color: var(--accent); margin: 20px 0;
+    }
+
+    footer {
+      padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .social a { color: var(--gray); margin: 0 15px; font-size: 24px; }
+    .social a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 42px; }
+      .hero p { font-size: 18px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.popular { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Shards Animation -->
+  <div class="shards" id="shards"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="logo">FractureVPN</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+        <a href="/airdrop">Airdrop</a>
+        <a href="/download">Download</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Shatter Surveillance</h1>
+      <p>The first sharded, decentralized VPN. Earn $FVPN while staying hidden.</p>
+      <a href="/airdrop" class="cta">Join Airdrop → 1,000 $FVPN Free</a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 50px; font-size: 36px;">Why FractureVPN?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Unbreakable Privacy</h3>
+          <p>7-shard encryption. No logs. No trust.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-bolt"></i>
+          <h3>WireGuard Speed</h3>
+          <p>4K streaming. 30ms gaming. Zero lag.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-coins"></i>
+          <h3>Earn $FVPN</h3>
+          <p>Run a node → $1,000/month</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>Pricing</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Free</h3>
+          <div class="price">$0</div>
+          <ul>
+            <li><i class="fas fa-check"></i> 3 shards</li>
+            <li><i class="fas fa-check"></i> Auto-optimizations</li>
+            <li><i class="fas fa-check"></i> Kill switch</li>
+            <li><i class="fas fa-check"></i> 70% streaming success</li>
+          </ul>
+          <a href="/download" class="cta" style="background: var(--gray);">Get Started</a>
+        </div>
+        <div class="price-card popular">
+          <h3>Pro <span style="background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">POPULAR</span></h3>
+          <div class="price">$0.10<span style="font-size: 18px;">/mo</span></div>
+          <ul>
+            <li><i class="fas fa-check"></i> 5 shards</li>
+            <li><i class="fas fa-check"></i> Priority nodes</li>
+            <li><i class="fas fa-check"></i> 4K streaming</li>
+            <li><i class="fas fa-check"></i> <50ms gaming</li>
+          </ul>
+          <a href="/upgrade" class="cta">Upgrade Now</a>
+        </div>
+        <div class="price-card">
+          <h3>Ultimate</h3>
+          <div class="price">$0.50<span style="font-size: 18px;">/mo</span></div>
+          <ul>
+            <li><i class="fas fa-check"></i> 7 shards</li>
+            <li><i class="fas fa-check"></i> Dedicated exit</li>
+            <li><i class="fas fa-check"></i> Max privacy</li>
+            <li><i class="fas fa-check"></i> <30ms gaming</li>
+          </ul>
+          <a href="/upgrade" class="cta">Go Ultimate</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Airdrop CTA -->
+  <section class="airdrop">
+    <div class="container">
+      <h2>Stake 0.01 ETH → Get 1,000 $FVPN</h2>
+      <div class="airdrop-counter" id="counter">0 Staked</div>
+      <a href="/airdrop" class="cta">Join Airdrop Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 FractureVPN. All rights reserved.</p>
+      <div class="social">
+        <a href="https://x.com/fracturevpn"><i class="fab fa-twitter"></i></a>
+        <a href="https://discord.gg/fracturevpn"><i class="fab fa-discord"></i></a>
+        <a href="https://github.com/fracturevpn"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animated Shards
+    const shardsContainer = document.getElementById('shards');
+    for (let i = 0; i < 15; i++) {
+      const shard = document.createElement('div');
+      shard.className = 'shard';
+      shard.style.left = Math.random() * 100 + '%';
+      shard.style.top = Math.random() * 100 + '%';
+      shard.style.animationDelay = Math.random() * 5 + 's';
+      shardsContainer.appendChild(shard);
+    }
+
+    // Live Airdrop Counter (mock)
+    let count = 0;
+    setInterval(() => {
+      count += Math.floor(Math.random() * 50);
+      document.getElementById('counter').textContent = count.toLocaleString() + ' ETH Staked';
+    }, 3000);
+  </script>
+</body>
+</html>
