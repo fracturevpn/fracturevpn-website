@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="FractureVPN — Sharded, decentralized privacy network. Earn $FVPN." />
+  <meta name="description" content="FractureVPN — Sharded, decentralized privacy network. Earn $FVPN with our airdrop." />
+  <meta name="keywords" content="FractureVPN, decentralized VPN, sharded VPN, $FVPN, airdrop, blockchain, privacy" />
+  <meta name="author" content="FractureVPN Team" />
   <title>FractureVPN — Sharded Privacy Network</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -25,6 +27,7 @@
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
     
+    /* Header */
     header {
       padding: 20px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -40,6 +43,7 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
+    /* Hero */
     .hero {
       padding: 100px 0; text-align: center; position: relative;
     }
@@ -60,6 +64,7 @@
     }
     .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(4, 91, 145, 0.4); }
 
+    /* Shards Animation */
     .shards {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
     }
@@ -73,6 +78,7 @@
       50% { transform: translateY(-20px) rotate(180deg); }
     }
 
+    /* Features */
     .features {
       padding: 100px 0; background: rgba(30, 41, 59, 0.5);
     }
@@ -89,6 +95,7 @@
     }
     .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
 
+    /* Pricing */
     .pricing {
       padding: 100px 0; text-align: center;
     }
@@ -114,6 +121,7 @@
       background: var(--accent); margin-top: 20px;
     }
 
+    /* Airdrop CTA */
     .airdrop {
       padding: 100px 0; background: rgba(4, 91, 145, 0.1); text-align: center;
     }
@@ -122,6 +130,7 @@
       font-size: 36px; font-weight: 900; color: var(--accent); margin: 20px 0;
     }
 
+    /* Footer */
     footer {
       padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
     }
@@ -211,7 +220,7 @@
             <li><i class="fas fa-check"></i> 4K streaming</li>
             <li><i class="fas fa-check"></i> <50ms gaming</li>
           </ul>
-          <a href="/upgrade" class="cta">Upgrade Now</a>
+          <a href="/pricing" class="cta">Upgrade Now</a>
         </div>
         <div class="price-card">
           <h3>Ultimate</h3>
@@ -222,7 +231,7 @@
             <li><i class="fas fa-check"></i> Max privacy</li>
             <li><i class="fas fa-check"></i> <30ms gaming</li>
           </ul>
-          <a href="/upgrade" class="cta">Go Ultimate</a>
+          <a href="/pricing" class="cta">Go Ultimate</a>
         </div>
       </div>
     </div>
@@ -232,7 +241,7 @@
   <section class="airdrop">
     <div class="container">
       <h2>Stake 0.01 ETH → Get 1,000 $FVPN</h2>
-      <div class="airdrop-counter" id="stakedCounter">Loading...</div>
+      <div class="airdrop-counter" id="counter">0 Staked</div>
       <a href="/airdrop" class="cta">Join Airdrop Now</a>
     </div>
   </section>
@@ -249,278 +258,6 @@
     </div>
   </footer>
 
-  <!-- Ethers.js + Real-Time Counter -->
-  <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js"></script>
-  <script>
-  const AIRDROP_CONTRACT = "0xf6B07a4649D78f2F52E35dFBDA6eFBb7093E93Fa"; // ← REPLACE THIS
-  const ABI = [
-    [
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_fpvn",
-				"type": "address"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "Staked",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "Unstaked",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "FVPN_REWARD",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "LOCK_PERIOD",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "MIN_STAKE",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "fvpn",
-		"outputs": [
-			{
-				"internalType": "contract IERC20",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			}
-		],
-		"name": "getUserStake",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "unlockAt",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "stakeForAirdrop",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "stakedAmount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalStaked",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "unlockTime",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "unstake",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]
-  ];
-
-    
-
-  const counter = document.getElementById('stakedCounter');
-
-  async function updateCounter() {
-    try {
-      const provider = new ethers.providers.JsonRpcProvider("https://arb1.arbitrum.io/rpc");
-      const contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
-      const total = await contract.totalStaked();
-      const eth = ethers.utils.formatEther(total);
-      counter.textContent = parseFloat(eth).toFixed(4) + " ETH Staked";
-    } catch (error) {
-      console.error("RPC Error:", error);
-      counter.textContent = "Error loading...";
-    }
-  }
-
-  updateCounter();
-  setInterval(updateCounter, 10000);
-</script>
-
   <script>
     // Animated Shards
     const shardsContainer = document.getElementById('shards');
@@ -532,6 +269,13 @@
       shard.style.animationDelay = Math.random() * 5 + 's';
       shardsContainer.appendChild(shard);
     }
+
+    // Mock Airdrop Counter (for visual effect, real counter is in airdrop.html)
+    let count = 0;
+    setInterval(() => {
+      count += Math.floor(Math.random() * 50);
+      document.getElementById('counter').textContent = count.toLocaleString() + ' ETH Staked';
+    }, 3000);
   </script>
 </body>
 </html>
