@@ -8,7 +8,6 @@
   <meta name="author" content="FractureVPN Team" />
   <title>FractureVPN — Sharded Privacy Network</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     :root {
       --bg: #0f172a;
@@ -40,6 +39,7 @@
     .nav-links a {
       color: var(--text); margin-left: 30px; text-decoration: none; font-weight: 600;
     }
+    .nav-links a:link, .nav-links a:visited { color: var(--text); }
     .nav-links a:hover { color: var(--accent); }
 
     .hero {
@@ -57,16 +57,17 @@
     .cta {
       display: inline-block; background: var(--accent); color: white; padding: 16px 36px;
       border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 18px;
-      box-shadow: 0 10px 30px rgba(4, 91, 145, 0.3);
+      box-shadow: 0 4px 6px rgba(4,91,145,0.3);
       transition: all 0.3s;
     }
-    .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(4, 91, 145, 0.4); }
+    .cta:link, .cta:visited { color: white; }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
 
     .shards {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
     }
     .shard {
-      position: absolute; width: 60px; height: 60px; background: rgba(4, 91, 145, 0.1);
+      position: absolute; width: 60px; height: 60px; background: rgba(4,91,145,0.1);
       clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
       animation: float 6s infinite ease-in-out;
     }
@@ -76,16 +77,16 @@
     }
 
     .features {
-      padding: 100px 0; background: rgba(30, 41, 59, 0.5);
+      padding: 100px 0; background: rgba(30,41,59,0.5);
     }
     .feature-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
     }
     .feature-card {
       background: var(--card); padding: 30px; border-radius: 16px; text-align: center;
-      transition: transform 0.3s;
+      transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .feature-card:hover { transform: translateY(-10px); }
+    .feature-card:hover { transform: translateY(-10px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
     .feature-card i {
       font-size: 48px; color: var(--accent); margin-bottom: 20px;
     }
@@ -99,25 +100,37 @@
     }
     .price-card {
       background: var(--card); padding: 40px; border-radius: 16px; position: relative;
-      transition: transform 0.3s;
+      transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .price-card:hover { transform: translateY(-10px); }
+    .price-card:hover { transform: translateY(-10px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
     .price-card.popular {
       border: 2px solid var(--accent);
       transform: scale(1.05);
     }
     .price-card.popular:hover { transform: scale(1.05) translateY(-10px); }
     .price-card h3 { font-size: 28px; margin-bottom: 10px; }
-    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); }
-    .price-card ul { list-style: none; margin: 20px 0; text-align: left; }
+    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); margin-bottom: 5px; }
+    .price-card .usd-price { font-size: 18px; color: var(--gray); margin-bottom: 20px; }
+    .price-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
     .price-card ul li { margin: 10px 0; }
-    .price-card ul li i { color: #10b981; margin-right: 10px; }
-    .price-card .cta {
-      background: var(--accent); margin-top: 20px;
+    .price-card ul li::before {
+      content: "\f00c"; /* Font Awesome check icon */
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+      color: #10b981;
+      margin-right: 10px;
     }
+    .price-card .cta {
+      background: var(--accent); color: white; padding: 16px 36px; border-radius: 12px;
+      font-weight: 700; text-decoration: none; font-size: 18px;
+      box-shadow: 0 4px 6px rgba(4,91,145,0.3);
+      transition: all 0.3s;
+    }
+    .price-card .cta:link, .price-card .cta:visited { color: white; }
+    .price-card .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
 
     .airdrop {
-      padding: 100px 0; background: rgba(4, 91, 145, 0.1); text-align: center;
+      padding: 100px 0; background: rgba(4,91,145,0.1); text-align: center;
     }
     .airdrop h2 { font-size: 42px; margin-bottom: 20px; }
     .airdrop-counter {
@@ -125,12 +138,14 @@
     }
     .status { margin-top: 15px; font-size: 14px; color: var(--gray); }
     .status a { color: #0ea5e9; text-decoration: underline; }
-    .status a:hover { color: #045b91; }
+    .status a:link, .status a:visited { color: #0ea5e9; }
+    .status a:hover { color: var(--accent); }
 
     footer {
-      padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 60px 0 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
     }
-    .social a { color: var(--gray); margin: 0 15px; font-size: 24px; }
+    .social a { color: var(--gray); margin: 0 15px; font-size: 24px; text-decoration: none; }
+    .social a:link, .social a:visited { color: var(--gray); }
     .social a:hover { color: var(--accent); }
 
     @media (max-width: 768px) {
@@ -138,6 +153,7 @@
       .hero p { font-size: 18px; }
       .pricing-grid { grid-template-columns: 1fr; }
       .price-card.popular { transform: none; }
+      .price-card { padding: 30px; }
     }
   </style>
 </head>
@@ -158,7 +174,7 @@
 
   <section class="hero">
     <div class="container">
-      <h1>No Logs, No Limits, Just Privacy</h1>
+      <h1>Privacy, Fractured and Free</h1>
       <p>The first sharded, decentralized VPN. Earn $FVPN while staying hidden.</p>
       <a href="/airdrop" class="cta">Join Airdrop → 1,000 $FVPN Free</a>
     </div>
@@ -196,10 +212,10 @@
           <div class="price">0 $FVPN</div>
           <div class="usd-price">($0/mo)</div>
           <ul>
-            <li><i class="fas fa-check"></i> 3 shards</li>
-            <li><i class="fas fa-check"></i> Auto-optimizations</li>
-            <li><i class="fas fa-check"></i> Kill switch</li>
-            <li><i class="fas fa-check"></i> 70% streaming success</li>
+            <li>3 shards</li>
+            <li>Auto-optimizations</li>
+            <li>Kill switch</li>
+            <li>70% streaming success</li>
           </ul>
           <a href="/download" class="cta" style="background: var(--gray);">Get Started</a>
         </div>
@@ -208,24 +224,24 @@
           <div class="price">100 $FVPN</div>
           <div class="usd-price">($0.10/mo)</div>
           <ul>
-            <li><i class="fas fa-check"></i> 5 shards</li>
-            <li><i class="fas fa-check"></i> Priority nodes</li>
-            <li><i class="fas fa-check"></i> 4K streaming</li>
-            <li><i class="fas fa-check"></i> <50ms gaming</li>
+            <li>5 shards</li>
+            <li>Priority nodes</li>
+            <li>4K streaming</li>
+            <li>&lt;50ms gaming</li>
           </ul>
-          <a href="/pricing" class="cta">Upgrade Now</a>
+          <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
         </div>
         <div class="price-card">
           <h3>Ultimate</h3>
           <div class="price">500 $FVPN</div>
           <div class="usd-price">($0.50/mo)</div>
           <ul>
-            <li><i class="fas fa-check"></i> 7 shards</li>
-            <li><i class="fas fa-check"></i> Dedicated exit</li>
-            <li><i class="fas fa-check"></i> Max privacy</li>
-            <li><i class="fas fa-check"></i> <30ms gaming</li>
+            <li>7 shards</li>
+            <li>Dedicated exit</li>
+            <li>Max privacy</li>
+            <li>&lt;30ms gaming</li>
           </ul>
-          <a href="/pricing" class="cta">Go Ultimate</a>
+          <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
         </div>
       </div>
     </div>
@@ -519,7 +535,10 @@
     const counter = document.getElementById('counter');
 
     function initApp() {
-      if (!window.ethers) return;
+      if (!window.ethers) {
+        status.innerHTML = 'Blockchain loading failed. Try refreshing.';
+        return;
+      }
 
       if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
         provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -540,8 +559,11 @@
         const total = await contract.totalStaked();
         const eth = ethers.utils.formatEther(total);
         counter.textContent = parseFloat(eth).toFixed(4) + ' ETH Staked';
+        status.textContent = "";
       } catch (error) {
-        console.error("Counter error:", error);
+        counter.textContent = "0 ETH Staked";
+        status.textContent = `Counter failed: ${error.message}`;
+        console.error(error);
       }
     }
 
@@ -549,15 +571,14 @@
       if (contract) updateCounter();
     }, 10000);
 
-    // Shards
-    const shards = document.getElementById('shards');
+    const shardsContainer = document.getElementById('shards');
     for (let i = 0; i < 15; i++) {
-      const s = document.createElement('div');
-      s.className = 'shard';
-      s.style.left = Math.random() * 100 + '%';
-      s.style.top = Math.random() * 100 + '%';
-      s.style.animationDelay = Math.random() * 5 + 's';
-      shards.appendChild(s);
+      const shard = document.createElement('div');
+      shard.className = 'shard';
+      shard.style.left = Math.random() * 100 + '%';
+      shard.style.top = Math.random() * 100 + '%';
+      shard.style.animationDelay = Math.random() * 5 + 's';
+      shardsContainer.appendChild(shard);
     }
   </script>
 </body>
