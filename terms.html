@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="FractureVPN — Sharded, decentralized privacy network. Earn $FVPN with our airdrop." />
-  <meta name="keywords" content="FractureVPN, decentralized VPN, sharded VPN, $FVPN, airdrop, blockchain, privacy" />
+  <meta name="description" content="FractureVPN Terms of Use — Rules for using our decentralized VPN and $FVPN airdrop." />
+  <meta name="keywords" content="FractureVPN, decentralized VPN, terms of use, $FVPN, airdrop, blockchain, privacy" />
   <meta name="author" content="FractureVPN Team" />
-  <title>FractureVPN — Sharded Privacy Network</title>
+  <title>FractureVPN — Terms of Use</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -42,104 +42,36 @@
     .nav-links a:link, .nav-links a:visited { color: var(--text); }
     .nav-links a:hover { color: var(--accent); }
 
-    .hero {
-      padding: 100px 0; text-align: center; position: relative;
+    .terms {
+      padding: 100px 0; text-align: left;
     }
-    .hero h1 {
-      font-size: 56px; font-weight: 900; margin-bottom: 20px;
+    .terms h1 {
+      font-size: 42px; font-weight: 900; margin-bottom: 20px;
       background: linear-gradient(90deg, #045b91, #0ea5e9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero p {
-      font-size: 20px; color: var(--gray); max-width: 700px; margin: 0 auto 40px;
+    .terms h2 {
+      font-size: 28px; margin: 40px 0 20px; color: var(--accent);
     }
-    .cta {
-      display: inline-block; background: var(--accent); color: white; padding: 16px 36px;
-      border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 18px;
-      box-shadow: 0 4px 6px rgba(4,91,145,0.3);
-      transition: all 0.3s;
+    .terms p {
+      font-size: 18px; color: var(--gray); margin-bottom: 20px; max-width: 800px;
     }
-    .cta:link, .cta:visited { color: white; }
-    .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
-
-    .shards {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
+    .terms ul {
+      list-style: none; margin-bottom: 20px; max-width: 800px;
     }
-    .shard {
-      position: absolute; width: 60px; height: 60px; background: rgba(4,91,145,0.1);
-      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-      animation: float 6s infinite ease-in-out;
+    .terms ul li {
+      margin: 10px 0; position: relative; padding-left: 30px;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(180deg); }
-    }
-
-    .features {
-      padding: 100px 0; background: rgba(30,41,59,0.5);
-    }
-    .feature-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
-    }
-    .feature-card {
-      background: var(--card); padding: 30px; border-radius: 16px; text-align: center;
-      transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .feature-card:hover { transform: translateY(-10px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-    .feature-card i {
-      font-size: 48px; color: var(--accent); margin-bottom: 20px;
-    }
-    .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
-
-    .pricing {
-      padding: 100px 0; text-align: center;
-    }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;
-    }
-    .price-card {
-      background: var(--card); padding: 40px; border-radius: 16px; position: relative;
-      transition: all 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .price-card:hover { transform: translateY(-10px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-    .price-card.popular {
-      border: 2px solid var(--accent);
-      transform: scale(1.05);
-    }
-    .price-card.popular:hover { transform: scale(1.05) translateY(-10px); }
-    .price-card h3 { font-size: 28px; margin-bottom: 10px; }
-    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); margin-bottom: 5px; }
-    .price-card .usd-price { font-size: 18px; color: var(--gray); margin-bottom: 20px; }
-    .price-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
-    .price-card ul li { margin: 10px 0; }
-    .price-card ul li::before {
+    .terms ul li::before {
       content: "\f00c"; /* Font Awesome check icon */
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
       color: #10b981;
-      margin-right: 10px;
+      position: absolute;
+      left: 0;
+      top: 2px;
     }
-    .price-card .cta {
-      background: var(--accent); color: white; padding: 16px 36px; border-radius: 12px;
-      font-weight: 700; text-decoration: none; font-size: 18px;
-      box-shadow: 0 4px 6px rgba(4,91,145,0.3);
-      transition: all 0.3s;
-    }
-    .price-card .cta:link, .price-card .cta:visited { color: white; }
-    .price-card .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
-
-    .airdrop {
-      padding: 100px 0; background: rgba(4,91,145,0.1); text-align: center;
-    }
-    .airdrop h2 { font-size: 42px; margin-bottom: 20px; }
-    .airdrop-counter {
-      font-size: 36px; font-weight: 900; color: var(--accent); margin: 20px 0;
-    }
-    .status { margin-top: 15px; font-size: 14px; color: var(--gray); }
-    .status a { color: #0ea5e9; text-decoration: underline; }
-    .status a:link, .status a:visited { color: #0ea5e9; }
-    .status a:hover { color: var(--accent); }
 
     footer {
       padding: 60px 0 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
@@ -149,23 +81,19 @@
     .social a:hover { color: var(--accent); }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 42px; }
-      .hero p { font-size: 18px; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .price-card.popular { transform: none; }
-      .price-card { padding: 30px; }
+      .terms h1 { font-size: 32px; }
+      .terms h2 { font-size: 24px; }
+      .terms p, .terms ul li { font-size: 16px; }
     }
   </style>
 </head>
 <body>
-  <div class="shards" id="shards"></div>
-
   <header>
     <div class="container nav">
       <div class="logo">FractureVPN</div>
       <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
+        <a href="/">Home</a>
+        <a href="/pricing">Pricing</a>
         <a href="/airdrop">Airdrop</a>
         <a href="/download">Download</a>
         <a href="/privacy">Privacy</a>
@@ -174,87 +102,57 @@
     </div>
   </header>
 
-  <section class="hero">
+  <section class="terms">
     <div class="container">
-      <h1>No Logs, No Limits, Just Privacy</h1>
-      <p>Stake 0.01 ETH for 30 days → Get 1,000 $FVPN</p>
-      <a href="/airdrop" class="cta">Join Airdrop Now</a>
-    </div>
-  </section>
+      <h1>Terms of Use</h1>
+      <p>Last updated: October 24, 2025</p>
+      
+      <h2>1. Acceptance of Terms</h2>
+      <p>By using FractureVPN’s services, website, or participating in our airdrop, you agree to these Terms of Use. If you do not agree, please do not use our services.</p>
 
-  <section class="features" id="features">
-    <div class="container">
-      <h2 style="text-align: center; margin-bottom: 50px; font-size: 36px;">Why FractureVPN?</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Unbreakable Privacy</h3>
-          <p>7-shard encryption. No logs. No trust.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-bolt"></i>
-          <h3>WireGuard Speed</h3>
-          <p>4K streaming. 30ms gaming. Zero lag.</p>
-        </div>
-        <div class="feature-card">
-          <i class="fas fa-coins"></i>
-          <h3>Earn $FVPN</h3>
-          <p>Run a node → Up to $1,000/month from subscription revenue and airdrop incentives, based on network usage and $FVPN value.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      <h2>2. Service Description</h2>
+      <p>FractureVPN provides a decentralized, sharded VPN service with three tiers:</p>
+      <ul>
+        <li>Free: 0 $FVPN ($0/mo), 3 shards, basic features.</li>
+        <li>Pro: 100 $FVPN (~$0.10/mo), 5 shards, priority nodes, 4K streaming.</li>
+        <li>Ultimate: 500 $FVPN (~$0.50/mo), 7 shards, dedicated exit, max privacy.</li>
+      </ul>
+      <p>We also offer an airdrop: Stake 0.01 ETH for 30 days to receive 1,000 $FVPN.</p>
 
-  <section class="pricing" id="pricing">
-    <div class="container">
-      <h2>Pricing</h2>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Free</h3>
-          <div class="price">0 $FVPN</div>
-          <div class="usd-price">($0/mo)</div>
-          <ul>
-            <li>3 shards</li>
-            <li>Auto-optimizations</li>
-            <li>Kill switch</li>
-            <li>70% streaming success</li>
-          </ul>
-          <a href="/download" class="cta" style="background: var(--gray);">Get Started</a>
-        </div>
-        <div class="price-card popular">
-          <h3>Pro <span style="background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">POPULAR</span></h3>
-          <div class="price">100 $FVPN</div>
-          <div class="usd-price">(~$0.10/mo)</div>
-          <ul>
-            <li>5 shards</li>
-            <li>Priority nodes</li>
-            <li>4K streaming</li>
-            <li>&lt;50ms gaming</li>
-          </ul>
-          <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
-        </div>
-        <div class="price-card">
-          <h3>Ultimate</h3>
-          <div class="price">500 $FVPN</div>
-          <div class="usd-price">(~$0.50/mo)</div>
-          <ul>
-            <li>7 shards</li>
-            <li>Dedicated exit</li>
-            <li>Max privacy</li>
-            <li>&lt;30ms gaming</li>
-          </ul>
-          <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
-        </div>
-      </div>
-    </div>
-  </section>
+      <h2>3. User Responsibilities</h2>
+      <p>You agree to:</p>
+      <ul>
+        <li>Use FractureVPN for lawful purposes only.</li>
+        <li>Not attempt to bypass security measures or disrupt the network.</li>
+        <li>Maintain control of your Ethereum wallet private keys.</li>
+        <li>Comply with all applicable laws and regulations.</li>
+      </ul>
 
-  <section class="airdrop">
-    <div class="container">
-      <h2>Stake 0.01 ETH → Get 1,000 $FVPN</h2>
-      <div class="airdrop-counter" id="counter">0 ETH Staked</div>
-      <div class="status" id="status">Loading blockchain...</div>
-      <a href="/airdrop" class="cta">Join Airdrop Now</a>
+      <h2>4. Airdrop Terms</h2>
+      <p>The airdrop requires staking 0.01 ETH for 30 days via our smart contract on Arbitrum One. After 30 days, you may unstake your ETH. You will receive 1,000 $FVPN upon staking. Rewards are subject to availability (1B $FVPN total supply allocated). Once the airdrop supply is exhausted, no further $FVPN will be distributed through the airdrop.</p>
+
+      <h2>5. Node Compensation</h2>
+      <p>Node operators contribute to the FractureVPN network by providing bandwidth and processing shards. Nodes are compensated with $FVPN incentives during the airdrop (from the 1B $FVPN supply) and with a portion (e.g., 70%) of subscription revenue from Pro (100 $FVPN ~$0.10/mo) and Ultimate (500 $FVPN ~$0.50/mo) tiers, distributed based on their contribution (e.g., bandwidth, uptime). This applies both during and after the airdrop. Earnings (e.g., up to $1,000/month) depend on network usage and $FVPN market value.</p>
+
+      <h2>6. Payments</h2>
+      <p>Pro and Ultimate tiers require payment in $FVPN. No refunds are provided due to the decentralized nature of blockchain transactions. Ensure you have sufficient $FVPN in your wallet before subscribing.</p>
+
+      <h2>7. Limitation of Liability</h2>
+      <p>FractureVPN is provided "as is." We are not liable for:</p>
+      <ul>
+        <li>Loss of funds due to user error (e.g., lost private keys).</li>
+        <li>Service interruptions due to blockchain network issues.</li>
+        <li>Damages from unauthorized use of your wallet.</li>
+      </ul>
+
+      <h2>8. Termination</h2>
+      <p>We may suspend or terminate your access if you violate these Terms or engage in illegal activity. Staked ETH and $FVPN rewards are subject to smart contract rules and cannot be reversed.</p>
+
+      <h2>9. Changes to Terms</h2>
+      <p>We may update these Terms at any time. Continued use of FractureVPN constitutes acceptance of the updated Terms.</p>
+
+      <h2>10. Contact Us</h2>
+      <p>For questions about these Terms, contact us at <a href="mailto:support@fracturevpn.com">support@fracturevpn.com</a>.</p>
     </div>
   </section>
 
@@ -267,77 +165,5 @@
       </div>
     </div>
   </footer>
-
-  <!-- Ethers.js with Fallback -->
-  <script>
-    (function() {
-      const script = document.createElement('script');
-      script.src = 'https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js';
-      script.onload = () => {
-        window.ethersLoaded = true;
-        initApp();
-      };
-      script.onerror = () => {
-        document.getElementById('status').innerHTML = 'Failed to load blockchain. Try again.';
-      };
-      document.head.appendChild(script);
-    })();
-  </script>
-
-  <script>
-    const AIRDROP_CONTRACT = "0xYourAirdropContract"; // REPLACE WITH YOUR REAL ADDRESS
-    const ABI = [ /* PASTE FULL ABI FROM REMIX HERE */ ];
-
-    let provider, contract;
-    const status = document.getElementById('status');
-    const counter = document.getElementById('counter');
-
-    function initApp() {
-      if (!window.ethers) {
-        status.innerHTML = 'Blockchain loading failed. Try refreshing.';
-        return;
-      }
-
-      if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
-        provider = new ethers.providers.Web3Provider(window.ethereum);
-        contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
-        status.innerHTML = 'MetaMask detected. <a href="/airdrop">Connect wallet on airdrop page</a>.';
-        updateCounter();
-      } else {
-        status.innerHTML = `
-          Install <a href="https://metamask.io/download/" target="_blank">MetaMask</a> to join the airdrop.
-        `;
-        counter.textContent = "0 ETH Staked";
-      }
-    }
-
-    async function updateCounter() {
-      if (!contract) return;
-      try {
-        const total = await contract.totalStaked();
-        const eth = ethers.utils.formatEther(total);
-        counter.textContent = parseFloat(eth).toFixed(4) + ' ETH Staked';
-        status.textContent = "";
-      } catch (error) {
-        counter.textContent = "0 ETH Staked";
-        status.textContent = `Counter failed: ${error.message}`;
-        console.error(error);
-      }
-    }
-
-    setInterval(() => {
-      if (contract) updateCounter();
-    }, 10000);
-
-    const shardsContainer = document.getElementById('shards');
-    for (let i = 0; i < 15; i++) {
-      const shard = document.createElement('div');
-      shard.className = 'shard';
-      shard.style.left = Math.random() * 100 + '%';
-      shard.style.top = Math.random() * 100 + '%';
-      shard.style.animationDelay = Math.random() * 5 + 's';
-      shardsContainer.appendChild(shard);
-    }
-  </script>
 </body>
 </html>
