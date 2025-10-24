@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="FractureVPN Pricing — Choose your plan: Free, Pro, or Ultimate. Pay with $FVPN." />
-  <meta name="keywords" content="FractureVPN, decentralized VPN, $FVPN, pricing, blockchain, privacy" />
+  <meta name="description" content="FractureVPN Terms of Use — Rules for using our decentralized VPN and $FVPN airdrop." />
+  <meta name="keywords" content="FractureVPN, decentralized VPN, terms of use, $FVPN, airdrop, blockchain, privacy" />
   <meta name="author" content="FractureVPN Team" />
-  <title>FractureVPN — Pricing</title>
+  <title>FractureVPN — Terms of Use</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -25,7 +25,7 @@
       overflow-x: hidden;
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
+    
     header {
       padding: 20px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -42,60 +42,36 @@
     .nav-links a:link, .nav-links a:visited { color: var(--text); }
     .nav-links a:hover { color: var(--accent); }
 
-    .hero {
-      padding: 100px 0; text-align: center;
+    .terms {
+      padding: 100px 0; text-align: left;
     }
-    .hero h1 {
-      font-size: 56px; font-weight: 900; margin-bottom: 20px;
+    .terms h1 {
+      font-size: 42px; font-weight: 900; margin-bottom: 20px;
       background: linear-gradient(90deg, #045b91, #0ea5e9);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .hero p {
-      font-size: 20px; color: var(--gray); max-width: 700px; margin: 0 auto 40px;
+    .terms h2 {
+      font-size: 28px; margin: 40px 0 20px; color: var(--accent);
     }
-
-    .pricing {
-      padding: 100px 0; text-align: center;
+    .terms p {
+      font-size: 18px; color: var(--gray); margin-bottom: 20px; max-width: 800px;
     }
-    .pricing h2 {
-      font-size: 42px; margin-bottom: 50px;
+    .terms ul {
+      list-style: none; margin-bottom: 20px; max-width: 800px;
     }
-    .pricing-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;
+    .terms ul li {
+      margin: 10px 0; position: relative; padding-left: 30px;
     }
-    .price-card {
-      background: var(--card); padding: 40px; border-radius: 16px; position: relative;
-      transition: all 0.3s;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    .price-card:hover { transform: translateY(-10px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); }
-    .price-card.popular {
-      border: 2px solid var(--accent);
-      transform: scale(1.05);
-    }
-    .price-card.popular:hover { transform: scale(1.05) translateY(-10px); }
-    .price-card h3 { font-size: 28px; margin-bottom: 10px; }
-    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); margin-bottom: 5px; }
-    .price-card .usd-price { font-size: 18px; color: var(--gray); margin-bottom: 20px; }
-    .price-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
-    .price-card ul li { margin: 10px 0; }
-    .price-card ul li::before {
+    .terms ul li::before {
       content: "\f00c"; /* Font Awesome check icon */
       font-family: "Font Awesome 5 Free";
       font-weight: 900;
       color: #10b981;
-      margin-right: 10px;
+      position: absolute;
+      left: 0;
+      top: 2px;
     }
-    .price-card .cta {
-      background: var(--accent); color: white; padding: 16px 36px; border-radius: 12px;
-      font-weight: 700; text-decoration: none; font-size: 18px;
-      box-shadow: 0 4px 6px rgba(4,91,145,0.3);
-      transition: all 0.3s;
-      display: inline-block;
-    }
-    .price-card .cta:link, .price-card .cta:visited { color: white; }
-    .price-card .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
 
     footer {
       padding: 60px 0 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
@@ -105,11 +81,9 @@
     .social a:hover { color: var(--accent); }
 
     @media (max-width: 768px) {
-      .hero h1 { font-size: 42px; }
-      .hero p { font-size: 18px; }
-      .pricing-grid { grid-template-columns: 1fr; }
-      .price-card.popular { transform: none; }
-      .price-card { padding: 30px; }
+      .terms h1 { font-size: 32px; }
+      .terms h2 { font-size: 24px; }
+      .terms p, .terms ul li { font-size: 16px; }
     }
   </style>
 </head>
@@ -119,60 +93,66 @@
       <div class="logo">FractureVPN</div>
       <div class="nav-links">
         <a href="/">Home</a>
+        <a href="/pricing">Pricing</a>
         <a href="/airdrop">Airdrop</a>
         <a href="/download">Download</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
       </div>
     </div>
   </header>
 
-  <section class="hero">
+  <section class="terms">
     <div class="container">
-      <h1>Choose Your Privacy Plan</h1>
-      <p>Pay with $FVPN for Pro or Ultimate tiers. Join the airdrop to get 1,000 $FVPN free.</p>
-    </div>
-  </section>
+      <h1>Terms of Use</h1>
+      <p>Last updated: October 24, 2025</p>
+      
+      <h2>1. Acceptance of Terms</h2>
+      <p>By using FractureVPN’s services, website, or participating in our airdrop, you agree to these Terms of Use. If you do not agree, please do not use our services.</p>
 
-  <section class="pricing">
-    <div class="container">
-      <h2>Pricing</h2>
-      <div class="pricing-grid">
-        <div class="price-card">
-          <h3>Free</h3>
-          <div class="price">0 $FVPN</div>
-          <div class="usd-price">($0/mo)</div>
-          <ul>
-            <li>3 shards</li>
-            <li>Auto-optimizations</li>
-            <li>Kill switch</li>
-            <li>70% streaming success</li>
-          </ul>
-          <a href="/download" class="cta" style="background: var(--gray);">Get Started</a>
-        </div>
-        <div class="price-card popular">
-          <h3>Pro <span style="background: var(--accent); color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px;">POPULAR</span></h3>
-          <div class="price">100 $FVPN</div>
-          <div class="usd-price">(~$0.10/mo)</div>
-          <ul>
-            <li>5 shards</li>
-            <li>Priority nodes</li>
-            <li>4K streaming</li>
-            <li>&lt;50ms gaming</li>
-          </ul>
-          <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
-        </div>
-        <div class="price-card">
-          <h3>Ultimate</h3>
-          <div class="price">500 $FVPN</div>
-          <div class="usd-price">(~$0.50/mo)</div>
-          <ul>
-            <li>7 shards</li>
-            <li>Dedicated exit</li>
-            <li>Max privacy</li>
-            <li>&lt;30ms gaming</li>
-          </ul>
-          <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
-        </div>
-      </div>
+      <h2>2. Service Description</h2>
+      <p>FractureVPN provides a decentralized, sharded VPN service with three tiers:</p>
+      <ul>
+        <li>Free: 0 $FVPN ($0/mo), 3 shards, basic features.</li>
+        <li>Pro: 100 $FVPN (~$0.10/mo), 5 shards, priority nodes, 4K streaming.</li>
+        <li>Ultimate: 500 $FVPN (~$0.50/mo), 7 shards, dedicated exit, max privacy.</li>
+      </ul>
+      <p>We also offer an airdrop: Stake 0.01 ETH for 30 days to receive 1,000 $FVPN.</p>
+
+      <h2>3. User Responsibilities</h2>
+      <p>You agree to:</p>
+      <ul>
+        <li>Use FractureVPN for lawful purposes only.</li>
+        <li>Not attempt to bypass security measures or disrupt the network.</li>
+        <li>Maintain control of your Ethereum wallet private keys.</li>
+        <li>Comply with all applicable laws and regulations.</li>
+      </ul>
+
+      <h2>4. Airdrop Terms</h2>
+      <p>The airdrop requires staking 0.01 ETH for 30 days via our smart contract on Arbitrum One. After 30 days, you may unstake your ETH. You will receive 1,000 $FVPN upon staking. Rewards are subject to availability (1B $FVPN total supply allocated). Once the airdrop supply is exhausted, no further $FVPN will be distributed through the airdrop.</p>
+
+      <h2>5. Node Compensation</h2>
+      <p>Node operators contribute to the FractureVPN network by providing bandwidth and processing shards. During the airdrop, nodes may receive $FVPN as incentives. After the 1B $FVPN airdrop supply is exhausted, nodes are compensated with a portion (e.g., 70%) of subscription revenue from Pro (100 $FVPN ~$0.10/mo) and Ultimate (500 $FVPN ~$0.50/mo) tiers, distributed based on their contribution (e.g., bandwidth, uptime). Earnings (e.g., up to $1,000/month) depend on network usage and $FVPN market value.</p>
+
+      <h2>6. Payments</h2>
+      <p>Pro and Ultimate tiers require payment in $FVPN. No refunds are provided due to the decentralized nature of blockchain transactions. Ensure you have sufficient $FVPN in your wallet before subscribing.</p>
+
+      <h2>7. Limitation of Liability</h2>
+      <p>FractureVPN is provided "as is." We are not liable for:</p>
+      <ul>
+        <li>Loss of funds due to user error (e.g., lost private keys).</li>
+        <li>Service interruptions due to blockchain network issues.</li>
+        <li>Damages from unauthorized use of your wallet.</li>
+      </ul>
+
+      <h2>8. Termination</h2>
+      <p>We may suspend or terminate your access if you violate these Terms or engage in illegal activity. Staked ETH and $FVPN rewards are subject to smart contract rules and cannot be reversed.</p>
+
+      <h2>9. Changes to Terms</h2>
+      <p>We may update these Terms at any time. Continued use of FractureVPN constitutes acceptance of the updated Terms.</p>
+
+      <h2>10. Contact Us</h2>
+      <p>For questions about these Terms, contact us at <a href="mailto:support@fracturevpn.com">support@fracturevpn.com</a>.</p>
     </div>
   </section>
 
@@ -181,7 +161,6 @@
       <p>&copy; 2025 FractureVPN. All rights reserved.</p>
       <div class="social">
         <a href="https://x.com/fracturevpn"><i class="fab fa-twitter"></i></a>
-        <a href="https://discord.gg/fracturevpn"><i class="fab fa-discord"></i></a>
         <a href="https://github.com/fracturevpn"><i class="fab fa-github"></i></a>
       </div>
     </div>
