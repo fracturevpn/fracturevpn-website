@@ -3,16 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>FractureVPN Pricing</title>
+  <meta name="description" content="FractureVPN Pricing — Choose your plan: Free, Pro, or Ultimate. Pay with $FVPN." />
+  <meta name="keywords" content="FractureVPN, decentralized VPN, $FVPN, pricing, blockchain, privacy" />
+  <meta name="author" content="FractureVPN Team" />
+  <title>FractureVPN — Pricing</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    /* Same style as index.html */
-    /* Paste the style block from index.html here */
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f3f4f6;
+      --accent: #045b91;
+      --gray: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6; 
+      overflow-x: hidden;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      font-size: 28px; font-weight: 900; color: var(--accent);
+    }
+    .nav-links a {
+      color: var(--text); margin-left: 30px; text-decoration: none; font-weight: 600;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .hero {
+      padding: 100px 0; text-align: center;
+    }
+    .hero h1 {
+      font-size: 56px; font-weight: 900; margin-bottom: 20px;
+      background: linear-gradient(90deg, #045b91, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 20px; color: var(--gray); max-width: 700px; margin: 0 auto 40px;
+    }
+
+    .pricing {
+      padding: 100px 0; text-align: center;
+    }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;
+    }
+    .price-card {
+      background: var(--card); padding: 40px; border-radius: 16px; position: relative;
+      transition: transform 0.3s;
+    }
+    .price-card:hover { transform: translateY(-10px); }
+    .price-card.popular {
+      border: 2px solid var(--accent);
+      transform: scale(1.05);
+    }
+    .price-card.popular:hover { transform: scale(1.05) translateY(-10px); }
+    .price-card h3 { font-size: 28px; margin-bottom: 10px; }
+    .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); }
+    .price-card .usd-price { font-size: 18px; color: var(--gray); margin-top: 5px; }
+    .price-card ul { list-style: none; margin: 20px 0; text-align: left; }
+    .price-card ul li { margin: 10px 0; }
+    .price-card ul li i { color: #10b981; margin-right: 10px; }
+    .price-card .cta {
+      background: var(--accent); margin-top: 20px; display: inline-block; padding: 16px 36px;
+      border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 18px;
+      box-shadow: 0 10px 30px rgba(4, 91, 145, 0.3);
+      transition: all 0.3s;
+    }
+    .price-card .cta:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(4, 91, 145, 0.4); }
+
+    footer {
+      padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .social a { color: var(--gray); margin: 0 15px; font-size: 24px; }
+    .social a:hover { color: var(--accent); }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 42px; }
+      .hero p { font-size: 18px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.popular { transform: none; }
+    }
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="container nav">
       <div class="logo">FractureVPN</div>
@@ -24,7 +111,13 @@
     </div>
   </header>
 
-  <!-- Pricing -->
+  <section class="hero">
+    <div class="container">
+      <h1>Choose Your Privacy Plan</h1>
+      <p>Pay with $FVPN for Pro or Ultimate tiers. Join the airdrop to get 1,000 $FVPN free.</p>
+    </div>
+  </section>
+
   <section class="pricing">
     <div class="container">
       <h2>Pricing</h2>
@@ -69,7 +162,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>&copy; 2025 FractureVPN. All rights reserved.</p>
