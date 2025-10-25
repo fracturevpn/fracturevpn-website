@@ -148,7 +148,7 @@
   <script src="https://cdn.ethers.io/lib/ethers-5.7.umd.min.js"></script>
   <script>
     // REPLACE WITH YOUR REAL ADDRESS AND ABI
-    const AIRDROP_CONTRACT = "0xf6B07a4649D78f2F52E35dFBDA6eFBb7093E93Fa"; // YOUR AirdropStaking ADDRESS
+    const AIRDROP_CONTRACT = "0xf6B07a4649D78f2F52E35dFBDA6eFBb7093E93Fa"; // REPLACE WITH THE ADDRESS FROM index.html
     const ABI = [
 	{
 		"inputs": [
@@ -392,7 +392,7 @@
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-]; // FULL ABI FROM STEP 2
+]; // MATCH index.html ABI
 
     const status = document.getElementById('status');
     const btn = document.getElementById('stakeBtn');
