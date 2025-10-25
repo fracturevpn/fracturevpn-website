@@ -461,6 +461,7 @@
         }
         contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
         status.innerHTML = 'MetaMask detected. <a href="/airdrop">Connect wallet on airdrop page</a>.';
+        await checkStakeStatus();
         await updateCounter();
       } catch (error) {
         status.innerHTML = `Counter failed: ${error.message}`;
@@ -469,20 +470,25 @@
       }
     };
 
-    async function updateCounter() {
+    async function checkStakeStatus() {
       if (!contract) {
-        status.innerHTML = `Contract not initialized. Please check address.`;
-        counter.textContent = "0 ETH Staked";
+        status.innerHTML = "Contract not initialized. Please reconnect.";
         return;
       }
       try {
-        const total = await contract.totalStaked();
-        const eth = ethers.utils.formatEther(total);
-        counter.textContent = parseFloat(eth).toFixed(4) + ' ETH Staked';
-        status.textContent = "";
+        const address = await signer?.getAddress();
+        if (address) {
+          const amount = await contract.stakedAmount(address);
+          if (amount > 0) {
+            const unlock = await contract.unlockTime(address);
+            const daysLeft = Math.ceil((unlock - Date.now() / 1000) / 86400);
+            status.innerHTML = `Staked! Unlock in ${daysLeft} days.`;
+            btn.textContent = "Claimed!";
+            btn.disabled = true;
+          }
+        }
       } catch (error) {
-        status.innerHTML = `Counter failed: ${error.message}`;
-        counter.textContent = "0 ETH Staked";
+        status.innerHTML = `Status check failed: ${error.message}`;
         console.error(error);
       }
     }
@@ -517,7 +523,12 @@
         contract = contract.connect(signer);
         btn.textContent = "Stake 0.01 ETH";
         status.textContent = "Connected!";
-        await checkStakeStatus(address);
+        setTimeout(() => {
+          if (status.textContent === "Connected!") {
+            status.textContent = "";
+          }
+        }, 2000); // Clear transient "Connected!" after 2 seconds
+        await checkStakeStatus();
         await updateCounter();
       } catch (error) {
         status.innerHTML = `Connection failed: ${error.message}`;
@@ -547,22 +558,24 @@
       }
     }
 
-    async function checkStakeStatus(address) {
+    async function updateCounter() {
       if (!contract) {
-        status.innerHTML = "Contract not initialized. Please reconnect.";
+        status.innerHTML = `Contract not initialized. Please check address.`;
+        counter.textContent = "0 ETH Staked";
         return;
       }
       try {
-        const amount = await contract.stakedAmount(address);
-        if (amount > 0) {
-          const unlock = await contract.unlockTime(address);
-          const daysLeft = Math.ceil((unlock - Date.now() / 1000) / 86400);
-          status.textContent = `Staked! Unlock in ${daysLeft} days.`;
-          btn.textContent = "Claimed!";
-          btn.disabled = true;
+        const total = await contract.totalStaked();
+        const eth = ethers.utils.formatEther(total);
+        counter.textContent = parseFloat(eth).toFixed(4) + ' ETH Staked';
+        // Only clear status if not showing a persistent message
+        if (!status.textContent.includes("Staked!") && !status.textContent.includes("Install MetaMask") && 
+            !status.textContent.includes("Arbitrum One") && !status.textContent.includes("failed")) {
+          status.textContent = "";
         }
       } catch (error) {
-        status.textContent = `Status check failed: ${error.message}`;
+        status.innerHTML = `Counter failed: ${error.message}`;
+        counter.textContent = "0 ETH Staked";
         console.error(error);
       }
     }
@@ -578,7 +591,7 @@
     // Initialize contract on page load
     initApp();
 
-    // Auto-update every 10s
+    // Auto-update counter every 10s
     setInterval(() => {
       if (contract) updateCounter();
     }, 10000);
