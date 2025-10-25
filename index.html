@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="FractureVPN — Sharded, decentralized privacy network. Earn $FVPN with our airdrop.">
   <meta name="keywords" content="FractureVPN, decentralized VPN, sharded VPN, $FVPN, airdrop, blockchain, privacy">
   <meta name="author" content="FractureVPN Team">
   <title>FractureVPN — Sharded Privacy Network</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0f172a;
@@ -17,15 +16,15 @@
       --gray: #94a3b8;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background: var(--bg); 
+      color: var(--text); 
+      line-height: 1.6; 
       overflow-x: hidden;
     }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-   
+    
     header {
       padding: 20px 0;
       border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -41,6 +40,7 @@
     }
     .nav-links a:link, .nav-links a:visited { color: var(--text); }
     .nav-links a:hover { color: var(--accent); }
+
     .hero {
       padding: 100px 0; text-align: center; position: relative;
     }
@@ -61,6 +61,7 @@
     }
     .cta:link, .cta:visited { color: white; }
     .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
+
     .shards {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden;
     }
@@ -73,6 +74,7 @@
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-20px) rotate(180deg); }
     }
+
     .features {
       padding: 100px 0; background: rgba(30,41,59,0.5);
     }
@@ -88,6 +90,7 @@
       font-size: 48px; color: var(--accent); margin-bottom: 20px;
     }
     .feature-card h3 { font-size: 24px; margin-bottom: 15px; }
+
     .pricing {
       padding: 100px 0; text-align: center;
     }
@@ -107,7 +110,7 @@
     .price-card h3 { font-size: 28px; margin-bottom: 10px; }
     .price-card .price { font-size: 48px; font-weight: 900; color: var(--accent); margin-bottom: 5px; }
     .price-card .usd-price { font-size: 18px; color: var(--gray); margin-bottom: 20px; }
-    .price-card ul { list-style: none; margin-bottom: 30px; }
+    .price-card ul { list-style: none; text-align: left; margin-bottom: 30px; }
     .price-card ul li { margin: 10px 0; }
     .price-card ul li::before {
       content: "\f00c"; /* Font Awesome check icon */
@@ -124,6 +127,7 @@
     }
     .price-card .cta:link, .price-card .cta:visited { color: white; }
     .price-card .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 10px rgba(4,91,145,0.4); color: white; }
+
     .airdrop {
       padding: 100px 0; background: rgba(4,91,145,0.1); text-align: center;
     }
@@ -135,22 +139,26 @@
     .status a { color: #0ea5e9; text-decoration: underline; }
     .status a:link, .status a:visited { color: #0ea5e9; }
     .status a:hover { color: var(--accent); }
+
     footer {
       padding: 60px 0 30px; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);
     }
     .social a { color: var(--gray); margin: 0 15px; font-size: 24px; text-decoration: none; }
     .social a:link, .social a:visited { color: var(--gray); }
     .social a:hover { color: var(--accent); }
+
     @media (max-width: 768px) {
       .hero h1 { font-size: 42px; }
       .hero p { font-size: 18px; }
       .pricing-grid { grid-template-columns: 1fr; }
+      .price-card.popular { transform: none; }
       .price-card { padding: 30px; }
     }
   </style>
 <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script></head>
 <body>
   <div class="shards" id="shards"><div class="shard" style="left: 68.08843%; top: 79.778584%; animation-delay: 4.452492s;"></div><div class="shard" style="left: 2.063472%; top: 95.252593%; animation-delay: 3.205582s;"></div><div class="shard" style="left: 88.553103%; top: 91.777102%; animation-delay: 4.161544s;"></div><div class="shard" style="left: 75.295319%; top: 37.800482%; animation-delay: 3.098272s;"></div><div class="shard" style="left: 54.013734%; top: 54.508555%; animation-delay: 2.213278s;"></div><div class="shard" style="left: 91.300875%; top: 55.732496%; animation-delay: 0.515155s;"></div><div class="shard" style="left: 76.618523%; top: 54.222867%; animation-delay: 0.989007s;"></div><div class="shard" style="left: 73.168581%; top: 85.525958%; animation-delay: 4.159745s;"></div><div class="shard" style="left: 85.275595%; top: 2.04429%; animation-delay: 3.751012s;"></div><div class="shard" style="left: 71.279883%; top: 10.517197%; animation-delay: 2.391982s;"></div><div class="shard" style="left: 33.821776%; top: 3.830279%; animation-delay: 4.779165s;"></div><div class="shard" style="left: 6.050338%; top: 71.287465%; animation-delay: 2.992039s;"></div><div class="shard" style="left: 71.684958%; top: 94.442407%; animation-delay: 3.614918s;"></div><div class="shard" style="left: 34.460557%; top: 47.793085%; animation-delay: 0.753466s;"></div><div class="shard" style="left: 15.571232%; top: 4.005807%; animation-delay: 2.608946s;"></div></div>
+
   <header>
     <div class="container nav">
       <div class="logo">FractureVPN</div>
@@ -164,6 +172,7 @@
       </div>
     </div>
   </header>
+
   <section class="hero">
     <div class="container">
       <h1>No Logs, No Limits, Just Privacy</h1>
@@ -171,6 +180,7 @@
       <a href="/airdrop" class="cta">Join Airdrop Now</a>
     </div>
   </section>
+
   <section class="features" id="features">
     <div class="container">
       <h2 style="text-align: center; margin-bottom: 50px; font-size: 36px;">Why FractureVPN?</h2>
@@ -193,6 +203,7 @@
       </div>
     </div>
   </section>
+
   <section class="pricing" id="pricing">
     <div class="container">
       <h2>Pricing</h2>
@@ -202,10 +213,10 @@
           <div class="price">0 $FVPN</div>
           <div class="usd-price">($0/mo)</div>
           <ul>
-            <li class="tooltip">3 shards <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Basic privacy with traffic split across 3 nodes for secure routing.</span></li>
-            <li class="tooltip">Auto-optimizations <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Automatic adjustments for streaming, gaming, and VoIP performance.</span></li>
-            <li class="tooltip">Kill switch <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Blocks all traffic if VPN drops to prevent data leaks.</span></li>
-            <li class="tooltip">70% streaming success <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Works with Netflix, Disney+, Hulu in 70% of cases.</span></li>
+            <li>3 shards</li>
+            <li>Auto-optimizations</li>
+            <li>Kill switch</li>
+            <li>70% streaming success</li>
           </ul>
           <a href="/download" class="cta" style="background: var(--gray);">Get Started</a>
         </div>
@@ -214,10 +225,10 @@
           <div class="price">100 $FVPN</div>
           <div class="usd-price">(~$0.10/mo)</div>
           <ul>
-            <li class="tooltip">5 shards <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Enhanced privacy with traffic split across 5 nodes for better security.</span></li>
-            <li class="tooltip">Priority nodes <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Access to fastest nodes for lower latency and higher bandwidth.</span></li>
-            <li class="tooltip">4K streaming <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Supports 4K Netflix, Disney+ with 90% success rate.</span></li>
-            <li class="tooltip"><50ms gaming <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Optimized for Valorant, CS2, Fortnite with low ping.</span></li>
+            <li>5 shards</li>
+            <li>Priority nodes</li>
+            <li>4K streaming</li>
+            <li>&lt;50ms gaming</li>
           </ul>
           <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
         </div>
@@ -226,23 +237,28 @@
           <div class="price">500 $FVPN</div>
           <div class="usd-price">(~$0.50/mo)</div>
           <ul>
-            <li class="tooltip">7 shards <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Maximum privacy with traffic split across 7 nodes for ultimate security.</span></li>
-            <li class="tooltip">Dedicated exit <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Private exit nodes for maximum speed and anonymity.</span></li>
-            <li class="tooltip">Max privacy <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Post-quantum encryption and zero-knowledge shards.</span></li>
-            <li class="tooltip"><30ms gaming <span class="tooltip-icon">ℹ</span><span class="tooltip-text">Ultra-low ping for competitive gaming with priority routing.</span></li>
+            <li>7 shards</li>
+            <li>Dedicated exit</li>
+            <li>Max privacy</li>
+            <li>&lt;30ms gaming</li>
           </ul>
           <a href="/airdrop" class="cta">Get $FVPN to Upgrade</a>
         </div>
       </div>
     </div>
   </section>
+
   <section class="airdrop">
     <div class="container">
       <h2>Stake 0.01 ETH → Get 1,000 $FVPN</h2>
       <div class="airdrop-counter" id="counter">0 ETH Staked</div>
+      <div class="status" id="status">
+          Install <a href="https://metamask.io/download/" target="_blank">MetaMask</a> to join the airdrop.
+        </div>
       <a href="/airdrop" class="cta">Join Airdrop Now</a>
     </div>
   </section>
+
   <footer>
     <div class="container">
       <p>© 2025 FractureVPN. All rights reserved.</p>
@@ -252,7 +268,8 @@
       </div>
     </div>
   </footer>
-  <script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+
+  <!-- Ethers.js with Fallback -->
   <script>
     (function() {
       const script = document.createElement('script');
@@ -267,6 +284,7 @@
       document.head.appendChild(script);
     })();
   </script>
+
   <script>
     const AIRDROP_CONTRACT = "0xf6B07a4649D78f2F52E35dFBDA6eFBb7093E93Fa"; // REPLACE WITH YOUR REAL ADDRESS
     const ABI = [
@@ -512,40 +530,49 @@
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-]; // FULL ABI FROM PREVIOUS MESSAGES
-
-    const counter = document.getElementById('counter');
+];
 
     let provider, contract;
+    const status = document.getElementById('status');
+    const counter = document.getElementById('counter');
 
     function initApp() {
       if (!window.ethers) {
-        counter.textContent = "Blockchain loading failed. Try refreshing.";
+        status.innerHTML = 'Blockchain loading failed. Try refreshing.';
         return;
       }
+
       if (typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask) {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
-        counter.textContent = "Blockchain connected. Loading counter...";
+        status.innerHTML = 'MetaMask detected. <a href="/airdrop">Connect wallet on airdrop page</a>.';
         updateCounter();
       } else {
-        counter.textContent = "Install MetaMask to see live airdrop counter.";
+        status.innerHTML = `
+          Install <a href="https://metamask.io/download/" target="_blank">MetaMask</a> to join the airdrop.
+        `;
+        counter.textContent = "0 ETH Staked";
       }
     }
+
     async function updateCounter() {
       if (!contract) return;
       try {
         const total = await contract.totalStaked();
         const eth = ethers.utils.formatEther(total);
         counter.textContent = parseFloat(eth).toFixed(4) + ' ETH Staked';
+        status.textContent = "";
       } catch (error) {
-        counter.textContent = "Failed to load counter";
+        counter.textContent = "0 ETH Staked";
+        status.textContent = `Counter failed: ${error.message}`;
         console.error(error);
       }
     }
+
     setInterval(() => {
       if (contract) updateCounter();
     }, 10000);
+
     const shardsContainer = document.getElementById('shards');
     for (let i = 0; i < 15; i++) {
       const shard = document.createElement('div');
@@ -556,5 +583,6 @@
       shardsContainer.appendChild(shard);
     }
   </script>
-</body>
-</html>
+
+
+</body></html>
