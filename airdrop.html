@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="FractureVPN Airdrop — Stake 0.01 ETH for 30 days, Get 1,000 $FVPN" />
+  <meta name="keywords" content="FractureVPN, decentralized VPN, sharded VPN, $FVPN, airdrop, blockchain, privacy">
+  <meta name="author" content="FractureVPN Team">
   <title>FractureVPN Airdrop</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
@@ -144,21 +146,21 @@
     </div>
   </footer>
 
-  <!-- Ethers.js + Real-Time Counter -->
+  <!-- Ethers.js with Fallback (Copied from index.html) -->
   <script>
     // Define initApp before script loading
     let initApp = () => {};
 
     // Load ethers.js with fallback
     (function() {
-      const primaryScript = document.createElement('script');
-      primaryScript.src = 'https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js';
-      primaryScript.async = true;
-      primaryScript.onload = () => {
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js';
+      script.async = true;
+      script.onload = () => {
         window.ethersLoaded = true;
         initApp();
       };
-      primaryScript.onerror = () => {
+      script.onerror = () => {
         const fallbackScript = document.createElement('script');
         fallbackScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js';
         fallbackScript.async = true;
@@ -171,7 +173,7 @@
         };
         document.head.appendChild(fallbackScript);
       };
-      document.head.appendChild(primaryScript);
+      document.head.appendChild(script);
     })();
   </script>
   <script>
@@ -431,51 +433,83 @@
 
     initApp = async function() {
       if (!window.ethers) {
-        status.textContent = "Blockchain library not loaded. Please refresh.";
+        status.innerHTML = 'Blockchain loading failed. Try refreshing.';
         counter.textContent = "0 ETH Staked";
         return;
       }
-      await initContract();
-    };
-
-    async function initContract() {
       if (!window.ethereum || !window.ethereum.isMetaMask) {
-        status.textContent = "Install MetaMask to join the airdrop.";
+        status.innerHTML = `Install <a href="https://metamask.io/download/" target="_blank">MetaMask</a> to join the airdrop.`;
         counter.textContent = "0 ETH Staked";
-        return false;
+        return;
       }
       try {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         const network = await provider.getNetwork();
         if (network.chainId !== 42161) {
-          status.textContent = "Please switch to Arbitrum One in MetaMask.";
+          status.innerHTML = `Please switch to Arbitrum One in MetaMask.`;
           try {
             await window.ethereum.request({
               method: 'wallet_switchEthereumChain',
               params: [{ chainId: '0xa4b1' }], // Arbitrum One = 42161
             });
           } catch (error) {
-            status.textContent = "Failed to switch to Arbitrum One. Please do it manually.";
+            status.innerHTML = `Failed to switch to Arbitrum One. Please do it manually.`;
             counter.textContent = "0 ETH Staked";
             console.error(error);
-            return false;
+            return;
           }
         }
         contract = new ethers.Contract(AIRDROP_CONTRACT, ABI, provider);
-        status.textContent = "Contract initialized. Connect wallet to proceed.";
-        return true;
+        status.innerHTML = 'MetaMask detected. <a href="/airdrop">Connect wallet on airdrop page</a>.';
+        await updateCounter();
       } catch (error) {
-        status.textContent = `Contract init failed: ${error.message}`;
+        status.innerHTML = `Counter failed: ${error.message}`;
         counter.textContent = "0 ETH Staked";
         console.error(error);
-        return false;
+      }
+    };
+
+    async function updateCounter() {
+      if (!contract) {
+        status.innerHTML = `Contract not initialized. Please check address.`;
+        counter.textContent = "0 ETH Staked";
+        return;
+      }
+      try {
+        const total = await contract.totalStaked();
+        const eth = ethers.utils.formatEther(total);
+        counter.textContent = parseFloat(eth).toFixed(4) + ' ETH Staked';
+        status.textContent = "";
+      } catch (error) {
+        status.innerHTML = `Counter failed: ${error.message}`;
+        counter.textContent = "0 ETH Staked";
+        console.error(error);
       }
     }
 
     async function connectWallet() {
-      const initialized = await initContract();
-      if (!initialized) return;
+      if (!window.ethers) {
+        status.innerHTML = 'Blockchain loading failed. Try refreshing.';
+        counter.textContent = "0 ETH Staked";
+        return;
+      }
       try {
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        const network = await provider.getNetwork();
+        if (network.chainId !== 42161) {
+          status.innerHTML = `Please switch to Arbitrum One in MetaMask.`;
+          try {
+            await window.ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: '0xa4b1' }],
+            });
+          } catch (error) {
+            status.innerHTML = `Failed to switch to Arbitrum One. Please do it manually.`;
+            counter.textContent = "0 ETH Staked";
+            console.error(error);
+            return;
+          }
+        }
         await provider.send("eth_requestAccounts", []);
         signer = provider.getSigner();
         const address = await signer.getAddress();
@@ -486,14 +520,14 @@
         await checkStakeStatus(address);
         await updateCounter();
       } catch (error) {
-        status.textContent = `Connection failed: ${error.message}`;
+        status.innerHTML = `Connection failed: ${error.message}`;
         console.error(error);
       }
     }
 
     async function stake() {
       if (!contract) {
-        status.textContent = "Contract not initialized. Please reconnect.";
+        status.innerHTML = "Contract not initialized. Please reconnect.";
         return;
       }
       try {
@@ -515,7 +549,7 @@
 
     async function checkStakeStatus(address) {
       if (!contract) {
-        status.textContent = "Contract not initialized. Please reconnect.";
+        status.innerHTML = "Contract not initialized. Please reconnect.";
         return;
       }
       try {
@@ -533,24 +567,6 @@
       }
     }
 
-    async function updateCounter() {
-      if (!contract) {
-        status.textContent = "Contract not initialized. Please check address.";
-        counter.textContent = "0 ETH Staked";
-        return;
-      }
-      try {
-        const total = await contract.totalStaked();
-        const eth = ethers.utils.formatEther(total);
-        counter.textContent = parseFloat(eth).toFixed(4) + " ETH Staked";
-        status.textContent = "";
-      } catch (error) {
-        status.textContent = `Counter failed: ${error.message}`;
-        counter.textContent = "0 ETH Staked";
-        console.error(error);
-      }
-    }
-
     btn.onclick = async () => {
       if (btn.textContent.includes("Connect")) {
         await connectWallet();
@@ -560,7 +576,7 @@
     }
 
     // Initialize contract on page load
-    initContract().then(() => updateCounter());
+    initApp();
 
     // Auto-update every 10s
     setInterval(() => {
